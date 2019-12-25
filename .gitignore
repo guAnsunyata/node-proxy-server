@@ -6,3 +6,5 @@ node_modules/
 .eslintcache
 
 config.js
+
+*.pem
