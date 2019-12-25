@@ -2,18 +2,30 @@
 Rely on [node-http-proxy](https://github.com/http-party/node-http-proxy)
 
 Simply add domain name and proxy target.
+
 ```js
 module.exports = {
-  proxyServerProt: 81,
+  proxyHttpsServerProt: 443,
+  proxyHttpServerProt: 80,
   configs: [
     {
-      domain: 'example-a.com.cat',
+      domain: 'exampleA.com',
       target: 'http://localhost:3000',
     },
     {
-      domain: 'example-b.com.cat',
+      domain: '(.*).exampleB.com',
       target: 'http://localhost:3001',
     },
   ],
+  certificates: {
+    'exampleA.com': {
+      keyPath: path.resolve(__dirname, './exampleA.com-key.pem'),
+      certPath: './exampleA.com-cert.pem',
+    },
+    '(.*).exampleB.com': {
+      keyPath: './exampleB.com-key.pem',
+      certPath: './exampleB.com-cert.pem',
+    },
+  },
 }
 ```
